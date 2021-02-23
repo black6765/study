@@ -14,8 +14,8 @@
     - String.valueOf() 메소드 사용
     - String.format() 메소드 사용(형식 지정자로 출력하기 편함, 속도는 문자열과 int를 연산해 쓰는 경우와 같음)
     - 속도를 빠르게 하려면 write()의 인자로 단일 문자열 만을 넣어주어야 하는 것으로 보임
-      - wr.write(temp + " ");
-      - wr.write(String.valueOf(temp)); wr.write(" "); 
+      - br.write(temp + " ");
+      - br.write(String.valueOf(temp)); br.write(" "); 
       - 위 두 개의 코드의 경우 아래 코드가 10% 정도 빠른 속도를 보였음. 
       - temp + " "를 연산하는 과정에서 새로운 문자열 객체를 만들면서 속도가 느려지는 것으로 추정(String은 문자열끼리 연산 시 새로운 객체 생성 - immutable)
       - 버퍼 계열 입 출력에 익숙해진 뒤에는 StringBuilder를 사용하는 것도 고려해야 할 듯
@@ -35,3 +35,6 @@
   - 메모리에서도 1/3 감소된 성능
   - 결론적으로 Scanner를 사용할 이유가 없어 보임(코딩 테스트에서)
   - 물론 해당 수치는 Integer.parseInt() 메소드 외에 문자열 조작을 하지 않은 프로그램에서 실험된 것이므로 문자열 조작이 많이 가해지는 프로그램의 경우에는 따로 테스트가 필요
+- bw.write(String.valueOf(값)) + bw.newLine() vs bw.write(값+"\ㅜ")
+  - 다시 한 번 실험 결과 출력 횟수가 낮은 프로그램에서도 String 객체의 연산을 이용하지 않고 newLine()을 이용하는 것이 메모리 + 속도에서 효율적임(2577번의 두 개의 제출 사례를 비교해볼 것)
+
