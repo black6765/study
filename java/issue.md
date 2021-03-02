@@ -93,4 +93,14 @@
   System.out.println(str.charAt(0)); // H 출력, 정상 작동
   ```
 
-  
+
+
+
+- StringTokenizer를 이용한 문자열 처리
+  - StringTokenizer st = new StringTokenizer([문자열], [구분자])로 "문자열"을 조작할 수 있음
+    - 구분자 미 지정시 default로 공백을 구분자로 함
+  - BufferedReader 사용 시 공백을 기준으로 문자열 구분할 때 유용
+  - StringTokenizer.nextToken()으로  [구분자]를 기준으로 문자열 처리 가능
+    - for 문 또는 while 문을 이용해 문자열을 처리
+    - while (StringTokenizer.hasMoreToken())을 이용하면 모든 토큰을 사용할 때 까지 반복됨
+      - hasMoreToken()은 토큰이 남아있으면 true, 없으면 false를 반환
