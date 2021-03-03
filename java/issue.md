@@ -71,9 +71,20 @@
 - Stream을 이용한 배열 처리(max, average 등)
 
   - 사용은 매우 간단하나, for 문을 통해 구하는 것이 속도가 더 빠른 것 같음(1516번 문제 케이스)
+  
   - 하지만 생산성 면에서 빠르므로 익혀두는 것이 좋을듯
+  
+    
+  
+- StringTokenizer vs String.split()
 
+  - 둘 다 구분자를 이용한 문자열 처리에 사용가능
 
+  - StringTokenizer는 별도의 String 배열 없이 구분자를 이용한 문자열 처리를 할 수 있음
+
+  - String.split()은 별도의 String[] str 배열이 필요할 것으로 보임(자른 문자열을 넣어야 하기 때문)
+
+    
 
 ### Language Report
 
