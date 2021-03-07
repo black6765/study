@@ -15,7 +15,7 @@ public class Main {
 		for (int i = 0; i <= 10000; i++) {
 			if(arr[i] != 1)
 				continue;
-			
+		// 함수 호출 (값이 10000 이하가 되는 d() 함수의 수열을 조사 - 재귀적 실행) 
 			d(i);
 		}
 		
