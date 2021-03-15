@@ -80,8 +80,9 @@
 
   - 둘 다 구분자를 이용한 문자열 처리에 사용가능
 - StringTokenizer는 별도의 String 배열 없이 구분자를 이용한 문자열 처리를 할 수 있음
-  - String.split()은 별도의 String[] str 배열이 필요할 것으로 보임(자른 문자열을 넣어야 하기 때문)
-
+  
+- String.split()은 별도의 String[] str 배열이 필요할 것으로 보임(자른 문자열을 넣어야 하기 때문)
+  
 - 1065번 문제
 
   - 함수의 return type을 boolean으로 하여 if 문 참 거짓을 따지게 했더니 속도가 느려짐(8ms)
@@ -118,3 +119,7 @@
     - for 문 또는 while 문을 이용해 문자열을 처리
     - while (StringTokenizer.hasMoreToken())을 이용하면 모든 토큰을 사용할 때 까지 반복됨
       - hasMoreToken()은 토큰이 남아있으면 true, 없으면 false를 반환
+- br.read() 메소드
+
+  - 한 문자만 읽어 정수형으로 변환함
+  - 아스키 코드를 다룰 때 유용할 듯
