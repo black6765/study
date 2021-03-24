@@ -1,0 +1,21 @@
+import java.io.*;
+import java.util.StringTokenizer;
+public class Main {
+    public static void main(String [] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        double A = Integer.parseInt(st.nextToken());
+        double B = Integer.parseInt(st.nextToken());
+        double C = Integer.parseInt(st.nextToken());
+        
+        int ans = (int)Math.ceil((C - A) / (A - B)) + 1;
+        
+        bw.write(String.valueOf(ans));
+
+        bw.flush();
+        bw.close();
+        br.close();
+    }
+}
