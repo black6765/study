@@ -15,6 +15,7 @@ public class Main {
 
         for (int i = 1; i < 15; i++) {
             for (int j = 1; j < 15; j++) {
+				// 가로 세로의 0번째 줄이 주어지면 나머지는 해당 공식으로 계산 가능함
                 arr[i][j] = arr[i-1][j] + arr[i][j-1];
             }
         }
