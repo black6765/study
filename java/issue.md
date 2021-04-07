@@ -63,10 +63,7 @@
     
   
 - ```bw.write(String.valueOf(값)) + bw.newLine() vs bw.write(값+"\n")```
-
   - 다시 한 번 실험 결과 출력 횟수가 낮은 프로그램에서도 String 객체의 연산을 이용하지 않고 newLine()을 이용하는 것이 메모리 + 속도에서 효율적임(2577번의 두 개의 제출 사례를 비교해볼 것)
-  
-    
   
 - Stream을 이용한 배열 처리(max, average 등)
   - 사용은 매우 간단하나, for 문을 통해 구하는 것이 속도가 더 빠른 것 같음(1516번 문제 케이스)
@@ -94,33 +91,24 @@
     - 똑같은 코드도 8ms 이상의 속도가 차이날 수 있음. 작은 속도에 연연하지 않아야 할듯
 
 - 자바 컬렉션을 이용한 알고리즘 구현도 생각해보자
-  = 정렬, 최소값 등 다양한 메소드 제공
+  - 정렬, 최소값 등 다양한 메소드 제공
   
 - System.exit(0) 메소드를 사용하면 속도가 상당히 느려지는 듯 함
   - 동일 조건에서 해당 구문을 뺐더니 30~40ms 정도의 속도 개선(2839번)
 
-
-
 ### Language Report
 
 - 자바에서는 String 객체의 인덱스 접근이 불가능하다
-
   ```java
   String str = "Hello, World";
   System.out.println(str[0]); // 컴파일 에러
   ```
 
-  
-
 - 대신 charAt 메소드를 이용해서 첨자 접근과 같은 동작을 할 수 있다
-
   ```java
   String str = "Hello, World";
   System.out.println(str.charAt(0)); // H 출력, 정상 작동
   ```
-
-
-
 
 - StringTokenizer를 이용한 문자열 처리
   - StringTokenizer st = new StringTokenizer([문자열], [구분자])로 "문자열"을 조작할 수 있음
@@ -131,6 +119,5 @@
     - while (StringTokenizer.hasMoreToken())을 이용하면 모든 토큰을 사용할 때 까지 반복됨
       - hasMoreToken()은 토큰이 남아있으면 true, 없으면 false를 반환
 - br.read() 메소드
-
   - 한 문자만 읽어 정수형으로 변환함
   - 아스키 코드를 다룰 때 유용할 듯
