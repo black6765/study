@@ -18,7 +18,10 @@ public class Main {
             W = Integer.parseInt(st.nextToken());
             N = Integer.parseInt(st.nextToken());
 
+            // 호 수는 N을 H로 나눈 것에 1을 더하면 
             X = (N / H) + 1;
+            
+            // 층 수는 N을 H로 나눈 나머지로 계산됨
             Y = N % H;
 
             if (Y == 0) {
