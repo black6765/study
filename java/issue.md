@@ -102,4 +102,6 @@
   - 아스키 코드를 다룰 때 유용할 듯
 
 - String.repeat() 메소드
-  - // todo
+  - String을 반복할 수 있음
+  - ex) "123".repeat(2) => "123123"
+  - ex) String str = "123".repeat(3) // s.equals("123123") : true
