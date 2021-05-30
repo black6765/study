@@ -4,6 +4,12 @@
 - 클래스명과 파일명이 일치하지 않으므로 실행 시에는 파일명을 Main으로 변경하여 실행
 
 ### Report
+
+- 2021-05-30 : Scanner와 BufferedReader 사용 차이
+- ![image-20210530172206860](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20210530172206860.png)
+- 위의 것이 BufferedReader 사용 코드, 아래 것이 Scanner 사용 코드(이하 코드 동일)
+- 엄청난 속도 차이가 존재함
+
 - Scanner 및 System.out.println은 다수의 데이터를 처리 시 효율성이 떨어짐
   - BufferedReader & BufferedWriter 사용
   - BufferedReader의 메소드인 readLine()은 한 줄씩 읽으므로 이를 처리해줄 방법이 필요
@@ -44,6 +50,7 @@
   - 물론 해당 수치는 Integer.parseInt() 메소드 외에 문자열 조작을 하지 않은 프로그램에서 실험된 것이므로 문자열 조작이 많이 가해지는 프로그램의 경우에는 따로 테스트가 필요
 
 - ```bw.write(String.valueOf(값)) + bw.newLine() vs bw.write(값+"\n")```
+  
   - 다시 한 번 실험 결과 출력 횟수가 낮은 프로그램에서도 String 객체의 연산을 이용하지 않고 newLine()을 이용하는 것이 메모리 + 속도에서 효율적임(2577번의 두 개의 제출 사례를 비교해볼 것)
   
 - Stream을 이용한 배열 처리(max, average 등)
@@ -51,6 +58,7 @@
   - 하지만 생산성 면에서 빠르므로 익혀두는 것이 좋을듯
   
 - StringTokenizer vs String.split()
+  
   - 둘 다 구분자를 이용한 문자열 처리에 사용가능
   
 - StringTokenizer는 별도의 String 배열 없이 구분자를 이용한 문자열 처리를 할 수 있음
@@ -70,9 +78,11 @@
     - 똑같은 코드도 8ms 이상의 속도가 차이날 수 있음. 작은 속도에 연연하지 않아야 할듯
 
 - 자바 컬렉션을 이용한 알고리즘 구현도 생각해보자
+  
   - 정렬, 최소값 등 다양한 메소드 제공
   
 - System.exit(0) 메소드를 사용하면 속도가 상당히 느려지는 듯 함
+  
   - 동일 조건에서 해당 구문을 뺐더니 30~40ms 정도의 속도 개선(2839번)
 
 ### Language Report
