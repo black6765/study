@@ -5,10 +5,22 @@
 
 ### Report
 
+- Java8 vs Java11
+
+  - 동일한 문제에 대해서 Java8이 좀 더 빠른 속도가 나옴
+  - 1406 : 에디터 참고
+
+- Deque 자료구조 사용 시
+
+  - offer와 add의 속도 차이 발생
+  - add가 반환을 하지 않아서 그런지 좀 더 빠름
+  - 1406 : 에디터 참고
+
 - 2021-05-30 : Scanner와 BufferedReader 사용 차이
-- ![image-20210530172206860](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20210530172206860.png)
-- 위의 것이 BufferedReader 사용 코드, 아래 것이 Scanner 사용 코드(이하 코드 동일)
-- 엄청난 속도 차이가 존재함
+
+  - ![image-20210530172206860](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20210530172206860.png)
+  - 위의 것이 BufferedReader 사용 코드, 아래 것이 Scanner 사용 코드(이하 코드 동일)
+  - 엄청난 속도 차이가 존재함
 
 - Scanner 및 System.out.println은 다수의 데이터를 처리 시 효율성이 떨어짐
   - BufferedReader & BufferedWriter 사용
@@ -62,7 +74,9 @@
   - 둘 다 구분자를 이용한 문자열 처리에 사용가능
   
 - StringTokenizer는 별도의 String 배열 없이 구분자를 이용한 문자열 처리를 할 수 있음
+
 - String.split()은 별도의 String[] str 배열이 필요할 것으로 보임(자른 문자열을 넣어야 하기 때문)
+
 - 1065번 문제
   - 함수의 return type을 boolean으로 하여 if 문 참 거짓을 따지게 했더니 속도가 느려짐(8ms)
   - 더 실험이 필요할 듯
