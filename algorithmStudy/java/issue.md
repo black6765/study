@@ -5,6 +5,12 @@
 
 ### Report
 
+- equals vs ==
+
+  - BOJ 11650
+  - override된 compare 함수에서 두 값을 비교할 때 ==을 쓰면 틀림. equals를 쓰면 정답
+  - equals는 값을 비교하고, ==은 객체의 주소를 비교함
+
 - Java8 vs Java11
 
   - 동일한 문제에 대해서 Java8이 좀 더 빠른 속도가 나옴
