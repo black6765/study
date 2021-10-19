@@ -5,6 +5,11 @@
 
 ### Report
 
+- bw.flush에 관하여
+
+  - 출력할 때마다 bw.flush를 사용하는 것보다 마지막에 bw.flush로 한 번에 비우는 것이 빠름
+  - 11723(집합) 문제 : 마지막에 bw.flush를 사용하면 통과 / 출력할 때마다 bw.flush를 사용하면 시간 초과
+  
 - equals vs ==
 
   - BOJ 11650
