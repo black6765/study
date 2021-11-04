@@ -1,18 +1,17 @@
 import java.util.*;
 import java.io.*;
-import java.math.*;
+
 public class Main {
-	public static void main(String [] args) throws IOException {
+	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
-		StringTokenizer st = new StringTokenizer(br.readLine());
+		int N = Integer.parseInt(br.readLine());
 		
-		BigInteger n = new BigInteger(st.nextToken());
-		BigInteger m = new BigInteger(st.nextToken());
+		while(N % 2 == 0) {
+			N /= 2;
+		}
 		
-		System.out.println(n.divide(m));
-		System.out.println(n.remainder(m));
-		
-		br.close();
+		if(N == 1) System.out.println("1");
+		else System.out.println("0");
 	}
 }
