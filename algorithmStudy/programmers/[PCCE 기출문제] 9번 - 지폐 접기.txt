@@ -1,0 +1,25 @@
+class Solution {
+    public int solution(int[] wallet, int[] bill) {
+        int answer = 0;
+        
+        int max = Math.max(bill[0], bill[1]);
+        int min = Math.min(bill[0], bill[1]);
+
+        int wmax = Math.max(wallet[0], wallet[1]);
+        int wmin = Math.min(wallet[0], wallet[1]);
+        
+        while (min > wmin || max > wmax) {
+            int newValue = max / 2;
+            answer++;
+            
+            if (newValue < min) {
+                max = min;
+                min = newValue;
+            } else {
+                max = newValue;
+            }
+        }
+        
+        return answer;
+    }
+}
