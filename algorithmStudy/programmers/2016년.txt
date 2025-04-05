@@ -1,0 +1,69 @@
+import java.util.*;
+import java.time.*;
+
+class Solution {
+    public String solution(int a, int b) {
+        String answer = "";
+        
+        // 0:금 1:토 2:일 3:월 4:화 5:수 6:목
+        int value = (convertDateToDays(a, b) - 1) % 7;
+        
+        switch (value) {
+            case 0:
+                answer = "FRI";
+                break;
+            case 1:
+                answer = "SAT";
+                break;
+            case 2:
+                 answer = "SUN";
+                break;
+            case 3:
+                 answer = "MON";
+                break;
+            case 4:
+                 answer = "TUE";
+                break;
+            case 5:
+                 answer = "WED";
+                break;
+            case 6:
+                 answer = "THU";
+                break;
+        }
+        
+        return answer;
+    }
+    
+    static int convertDateToDays(int month, int day) {
+        int days = day;
+        switch(month) {
+            case 12:
+                days += 30;
+            case 11:
+                days += 31;
+            case 10:
+                days += 30;
+            case 9:
+                days += 31;
+            case 8:
+                days += 31;
+            case 7:
+                days += 30;
+            case 6:
+                days += 31;
+            case 5:
+                days += 30;
+            case 4:
+                days += 31;
+            case 3:
+                days += 29;
+            case 2:
+                days += 31;
+            case 1:
+                break;
+        }
+        
+        return days;
+    }
+}
