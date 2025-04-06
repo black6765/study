@@ -1,0 +1,62 @@
+import java.io.*;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.ListIterator;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        String start = br.readLine();
+        Integer N = Integer.parseInt(br.readLine());
+
+        List<Character> list = new LinkedList<>();
+
+        for (int i = 0; i < start.length(); i++) {
+            list.add(start.charAt(i));
+        }
+
+        ListIterator<Character> iter = list.listIterator(start.length());
+
+        for (int i = 0; i < N; i++) {
+            String[] input =  br.readLine().split(" ");
+
+            if (input.length == 1) {
+                if (input[0].equals("L")) {
+                    if (iter.hasPrevious()) {
+                        iter.previous();
+                    }
+//                    System.out.println(list);
+                }
+
+                if (input[0].equals("D")) {
+                    if (iter.hasNext()) {
+                        iter.next();
+                    }
+//                    System.out.println(list);
+                }
+
+                if (input[0].equals("B")) {
+                    if (iter.hasPrevious()) {
+                        iter.previous();
+                        iter.remove();
+                    }
+//                    System.out.println(list);
+                }
+
+
+            } else {
+                iter.add(input[1].charAt(0));
+//                System.out.println(list);
+            }
+        }
+
+		// BufferedWriter를 이용하지 않고 System.out.print로 출력하게 되면 시간 초과됨
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+
+        for (Character c : list) {
+            bw.write(c);
+        }
+        bw.close();
+    }
+}
