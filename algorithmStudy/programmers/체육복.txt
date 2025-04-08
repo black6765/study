@@ -1,0 +1,45 @@
+import java.util.*;
+
+class Solution {
+    public int solution(int n, int[] lost, int[] reserve) {
+        int answer = 0;
+             
+        List<Integer> lostList = new ArrayList<>();
+        List<Integer> reserveList = new ArrayList<>();
+            
+        for (Integer i : lost) {
+            lostList.add(i);
+        }
+        for (Integer i : reserve) {
+            reserveList.add(i);
+        }
+        
+        for (int i = lostList.size() - 1; i >= 0; i--) {
+            for (int j = reserveList.size() - 1; j >= 0; j--) {
+                if (lostList.get(i) == reserveList.get(j)) {
+                    lostList.remove(i);
+                    reserveList.remove(j);
+                    break;
+                }
+            }
+        }
+        
+        Collections.sort(lostList);
+        Collections.sort(reserveList);
+                
+        answer = n - lostList.size();
+                
+        for (int i = 0; i < lostList.size(); i++) {
+            for (int j = 0; j < reserveList.size(); j++) {
+
+                if (reserveList.get(j) == lostList.get(i) - 1 || reserveList.get(j) == lostList.get(i) + 1) {
+                    answer++;
+                    reserveList.set(j, Integer.MIN_VALUE);
+                    break;
+                }
+            }
+        }
+        
+        return answer;
+    }
+}
