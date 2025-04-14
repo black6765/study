@@ -1,0 +1,45 @@
+import java.util.*;
+
+class Solution {
+    
+    private static final int TARGET_LENGTH = 3;
+    private static int globalAnswer = 0;
+    private static boolean[] used;
+        
+    public int solution(int[] nums) {
+        used = new boolean[nums.length];
+
+        findPrime(0, 0, nums, 0);
+
+        
+        return globalAnswer;
+    }
+    
+    static void findPrime(int n, int idx, int[] nums, int sum) {
+        if (n == TARGET_LENGTH) {
+            
+            int primeCnt = 0;
+            
+            for (int i = 2; i < sum; i++) {
+                if (sum % i == 0) primeCnt++;
+            }
+            
+            if (primeCnt == 0) {
+                globalAnswer++;
+            }
+            return;
+        }
+        
+        for (int i = idx; i < nums.length; i++) {
+            if (!used[i]) {
+                used[i] = true;
+                sum += nums[i];
+                
+                findPrime(n + 1, i, nums, sum);
+                
+                sum -= nums[i];
+                used[i] = false;
+            }
+        }
+    }
+}
