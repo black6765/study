@@ -1,0 +1,23 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        String input = br.readLine();
+
+        String replaced = input.replace("c=", "1");
+        replaced = replaced.replace("c-", "1");
+        replaced = replaced.replace("dz=", "1");
+        replaced = replaced.replace("d-", "1");
+        replaced = replaced.replace("lj", "1");
+        replaced = replaced.replace("nj", "1");
+        replaced = replaced.replace("s=", "1");
+        replaced = replaced.replace("z=", "1");
+
+        System.out.println(replaced.length());
+    }
+}
