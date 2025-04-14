@@ -20,7 +20,9 @@ class Solution {
             
             int primeCnt = 0;
             
-            for (int i = 2; i < sum; i++) {
+			// sum 까지 확인하지 않고, sum의 제곱근 값까지만 확인해도 됨
+			// sqrt 대신 i * i를 이용
+            for (int i = 2; i * i <= sum; i++) {
                 if (sum % i == 0) primeCnt++;
             }
             
@@ -28,6 +30,8 @@ class Solution {
                 globalAnswer++;
             }
             return;
+        } else {
+           
         }
         
         for (int i = idx; i < nums.length; i++) {
@@ -36,7 +40,6 @@ class Solution {
                 sum += nums[i];
                 
                 findPrime(n + 1, i, nums, sum);
-                
                 sum -= nums[i];
                 used[i] = false;
             }
