@@ -1,0 +1,85 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+    static int answer = 0;
+    static int N;
+    static boolean[][] used;
+
+    public static void main(String[] args) throws IOException {
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        String[] input = br.readLine().split(" ");
+        N = Integer.parseInt(input[0]);
+        used = new boolean[N][N];
+
+        backtracking(0);
+
+        System.out.println(answer);
+
+    }
+
+    private static void backtracking(int row) {
+        if (row == N) {
+            answer++;
+            return;
+        }
+
+        for (int j = 0; j < N; j++) {
+            if (!used[row][j] && !isUsedByQueen(row, j)) {
+                used[row][j] = true;
+
+                backtracking(row + 1);
+
+                used[row][j] = false;
+            }
+        }
+    }
+
+    private static boolean isUsedByQueen(int i, int j) {
+        for (int k = 0; k < N; k++) {
+            if (used[i][k]) return true;
+            if (used[k][j]) return true;
+        }
+
+        int cnt = 1;
+        while (true) {
+            int nRow = i + cnt;
+            int nCol = j + cnt;
+            if (nRow < 0 || nRow >= N || nCol < 0 || nCol >= N) break;
+            if (used[nRow][nCol]) return true;
+            cnt++;
+        }
+
+        cnt = 1;
+        while (true) {
+            int nRow = i + cnt;
+            int nCol = j - cnt;
+            if (nRow < 0 || nRow >= N || nCol < 0 || nCol >= N) break;
+            if (used[nRow][nCol]) return true;
+            cnt++;
+        }
+
+        cnt = 1;
+        while (true) {
+            int nRow = i - cnt;
+            int nCol = j + cnt;
+            if (nRow < 0 || nRow >= N || nCol < 0 || nCol >= N) break;
+            if (used[nRow][nCol]) return true;
+            cnt++;
+        }
+
+        cnt = 1;
+        while (true) {
+            int nRow = i - cnt;
+            int nCol = j - cnt;
+            if (nRow < 0 || nRow >= N || nCol < 0 || nCol >= N) break;
+            if (used[nRow][nCol]) return true;
+            cnt++;
+        }
+
+        return false;
+    }
+}
