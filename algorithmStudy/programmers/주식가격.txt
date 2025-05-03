@@ -1,0 +1,22 @@
+class Solution {
+    public int[] solution(int[] prices) {
+        int[] answer = new int[prices.length];
+        
+        for (int i = 0; i < prices.length; i++) {
+            int price = prices[i];
+            
+            // System.out.println(price);
+            answer[i] = prices.length - i - 1;
+            for (int j = i + 1; j < prices.length; j++) {
+                // System.out.println(price + " " + prices[j]);
+                
+                if (price > prices[j]) {
+                    answer[i] = j - i;
+                    break;
+                }
+            }
+        }
+        
+        return answer;
+    }
+}
