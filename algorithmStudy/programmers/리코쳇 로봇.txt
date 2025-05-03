@@ -1,0 +1,154 @@
+import java.util.*;
+
+class Solution {
+    public int solution(String[] board) {
+        // BFS : r/c 좌표가 자신의 r/c 같은 지점에 있는 D를 큐에 넣음
+
+        // 처음에 배열을 한번 순회하여 R, G위치 기록함
+
+        // r좌표가 같은 지점이라면
+        // 1. c좌표가 D보다 큰 곳에서 접근할 때 : (r, c+1)
+        // 2. c좌표가 D보다 작은 곳에서 접근할 떄 : (r, c-1)
+
+        // c좌표가 같은 지점이라면
+        // 1. r좌표가 D보다 큰 곳에서 접근할 때 : (r + 1, c)
+        // 2. r좌표가 D보다 작은 곳에서 접근할 떄 : (r - 1, c)
+
+        // dist[][] 배열 : dist[r][c] 인덱스의 최소 거리 기록
+
+        int[] R = new int[2];
+        int[] G = new int[2];
+
+        Deque<int[]> queue = new ArrayDeque<>();
+        int[][] dist = new int[board.length][board[0].length()];
+
+        for (int r = 0; r < board.length; r++) {
+            for (int c = 0; c < board[0].length(); c++) {
+
+                dist[r][c] =  -1;
+
+                if ('R' == (board[r].charAt(c))) {
+                    R[0] = r;
+                    R[1] = c;
+                    dist[r][c] = 0;
+                }
+
+                if ('G' == (board[r].charAt(c))) {
+                    G[0] = r;
+                    G[1] = c;
+                }
+            }
+        }
+
+        queue.addLast(R);
+
+        while (!queue.isEmpty()) {
+            int[] cur = queue.removeFirst();
+            int cRow = cur[0];
+            int cCol = cur[1];
+
+            System.out.println(cRow + " " + cCol + " " + dist[cRow][cCol]);
+
+            if (cRow == G[0] && cCol == G[1]) {
+                return dist[cRow][cCol];
+            }
+
+            // 다음 이동할 위치
+            // 상하좌우로 진행 방향으로 'D'를 만나거나, board의 끝에 닿을 떄까지 진행
+            int next;
+
+            // row를 감소해가면서 D 또는 board의 끝이 나올 때까지 진행
+            next = cRow;
+            while (next >= 1) {
+                next--;
+
+                // D를 만나면 해당 블럭의 row + 1 좌표로 이동해야 함(D 블럭 아래에서 접근)
+                if (board[next].charAt(cCol) == 'D')  {
+                    if (dist[next + 1][cCol] == -1) {
+                        queue.addLast(new int[]{next + 1, cCol});
+                        dist[next + 1][cCol] = dist[cRow][cCol] + 1;
+                    }
+
+                    // 만약 이동하지 못했다면 더이상 해당 방향으로는 진행할 수 없음(이동할 수 없는 D가 가로먹아서)
+                    break;
+                }
+
+                // board의 끝에 도달하였고, 이미 이동하지 않은 곳이라면 해당 위치로 이동
+                if (next == 0 && dist[0][cCol] == -1) {
+                    queue.addLast(new int[]{0, cCol});
+                    dist[0][cCol] = dist[cRow][cCol] + 1;
+                }
+            }
+
+            // row를 증가해가면서 D 또는 board의 끝이 나올 때까지 진행
+            next = cRow;
+            while (next < board.length - 1) {
+                next++;
+
+                // D를 만나면 해당 블럭의 row - 1 좌표로 이동해야 함(D 블럭 위에서 접근)
+                if (board[next].charAt(cCol) == 'D') {
+                    if (dist[next - 1][cCol] == -1) {
+                        queue.addLast(new int[]{next - 1, cCol});
+                        dist[next - 1][cCol] = dist[cRow][cCol] + 1;
+                    }
+
+                    // 만약 이동하지 못했다면 더이상 해당 방향으로는 진행할 수 없음(이동할 수 없는 D가 가로먹아서)
+                    break;
+                }
+
+                // board의 끝에 도달하였고, 이미 이동하지 않은 곳이라면 해당 위치로 이동
+                if (next == board.length - 1 && dist[next][cCol] == -1) {
+                    queue.addLast(new int[]{next, cCol});
+                    dist[next][cCol] = dist[cRow][cCol] + 1;
+                }
+            }
+
+            // col을 감소해가면서 D 또는 board의 끝이 나올 때까지 진행
+            next = cCol;
+            while (next >= 1) {
+                next--;
+
+                // D를 만나면 해당 블럭의 row + 1 좌표로 이동해야 함(D 블럭 오른쪽에서 접근)
+                if (board[cRow].charAt(next) == 'D') {
+                    if (dist[cRow][next + 1] == -1) {
+                        queue.addLast(new int[]{cRow, next + 1});
+                        dist[cRow][next + 1] = dist[cRow][cCol] + 1;
+                    }
+
+                    // 만약 이동하지 못했다면 더이상 해당 방향으로는 진행할 수 없음(이동할 수 없는 D가 가로먹아서)
+                    break;
+                }
+
+                // board의 끝에 도달하였고, 이미 이동하지 않은 곳이라면 해당 위치로 이동
+                if (next == 0 && dist[cRow][next] == -1) {
+                    queue.addLast(new int[]{cRow, next});
+                    dist[cRow][next] = dist[cRow][cCol] + 1;
+                }
+            }
+
+            // col을 증가해가면서 D 또는 board의 끝이 나올 때까지 진행
+            while (next < board[0].length() - 1) {
+                next++;
+
+                // D를 만나면 해당 블럭의 row - 1 좌표로 이동해야 함(D 블럭 왼쪽에서 접근)
+                if (board[cRow].charAt(next) == 'D') {
+                    if (dist[cRow][next - 1] == -1) {
+                        queue.addLast(new int[]{cRow, next - 1});
+                        dist[cRow][next - 1] = dist[cRow][cCol] + 1;
+                    }
+                    break;
+                }
+
+                // board의 끝에 도달하였고, 이미 이동하지 않은 곳이라면 해당 위치로 이동
+                if (next == board[0].length() - 1 && dist[cRow][next] == -1) {
+                    queue.addLast(new int[]{cRow, next});
+                    dist[cRow][next] = dist[cRow][cCol] + 1;
+                }
+            }
+
+        }
+
+        // BFS 결과 G로 가는 길을 찾지 못했다면 경로가 없는 것이므로 -1 리턴
+        return -1;
+    }
+}
