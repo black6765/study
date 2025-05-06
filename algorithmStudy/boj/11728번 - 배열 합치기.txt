@@ -1,0 +1,58 @@
+import java.io.*;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+
+        String[] input = br.readLine().split(" ");
+        int N = Integer.parseInt(input[0]);
+        int M = Integer.parseInt(input[1]);
+
+        int[] A = new int[N];
+        int[] B = new int[M];
+
+        String[] stringA = br.readLine().split(" ");
+        String[] stringB = br.readLine().split(" ");
+        for (int i = 0; i < N; i++) {
+            A[i] = Integer.parseInt(stringA[i]);
+        }
+
+        for (int i = 0; i < M; i++) {
+            B[i] = Integer.parseInt(stringB[i]);
+        }
+
+        int aIdx = 0;
+        int bIdx = 0;
+
+        while (aIdx != N && bIdx != M) {
+            int smaller;
+
+
+            if (A[aIdx] < B[bIdx]) {
+                smaller = A[aIdx++];
+            } else {
+                smaller = B[bIdx++];
+            }
+
+            bw.write(smaller + " ");
+        }
+
+
+        if (aIdx == N) {
+            for (int i = bIdx; i < M; i++) {
+                bw.write(B[i] + " ");
+            }
+        } else {
+            for (int i = aIdx; i < N; i++) {
+                bw.write(A[i] + " ");
+            }
+        }
+
+        bw.flush();
+        bw.close();
+    }
+
+
+}
