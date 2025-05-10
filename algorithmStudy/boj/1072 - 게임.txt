@@ -1,0 +1,40 @@
+import java.io.*;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+
+        String[] input = br.readLine().split(" ");
+        long X = Long.parseLong(input[0]);
+        long Y = Long.parseLong(input[1]);
+        if ((Y) * 100 / (X) == 99) bw.write(String.valueOf(-1));
+        else if (X == 0 && Y == 0) bw.write(String.valueOf(1));
+        else if (X == Y) bw.write(String.valueOf(-1));
+        else {
+
+            long Z = (Y * 100) / X;
+
+            long left = 0;
+            long right = Long.MAX_VALUE / 100;
+            long cur = 0;
+            while(left <= right ) {
+                
+                cur = (left + right) / 2;
+
+                if ((Y + cur) * 100 / (X + cur) > Z) {
+                    right = cur - 1;
+                } else {
+                    left = cur + 1;
+                }
+            }
+
+            System.out.println(left);
+        }
+
+        bw.flush();
+        bw.close();
+    }
+
+}
